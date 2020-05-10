@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+
+
+sh $1 | tee -a ~/Desktop/error.txt
+
+
+
+lastRun=$(( $?))
+
+echo $lastRun
+
+while [[ $lastRun -eq 0 ]]
+do 
+
+ sh $1 |  tee -a ~/Desktop/error.txt
+
+  lastRun=$(( $? ))
+  echo $lastRun
+done
+
+echo "Found the error"
